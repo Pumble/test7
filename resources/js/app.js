@@ -38,5 +38,10 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: "#app",
+    data() {
+        return {
+            types: ['Number', 'Float', 'String', 'Boolean', 'Object', 'Array', 'Date']
+        };
+    },
     router
 });

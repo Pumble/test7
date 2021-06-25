@@ -135,6 +135,11 @@ export default {
 		if (this.$route.params.id) {
 			this.get(this.$route.params.id);
 			this.getCategories();
+		} else {
+			Swal.fire({
+				icon: "error",
+				text: "Intenta volver a seleccionar la categoría"
+			});
 		}
 	}
 };

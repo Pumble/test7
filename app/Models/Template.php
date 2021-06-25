@@ -24,7 +24,6 @@ class Template extends Model
         return $this->hasMany(TemplateValue::class, 'template_id', 'id');
     }
 
-
     public function products()
     {
         return $this->belongsToMany(Product::class, 'template_values', 'template_id', 'product_id')

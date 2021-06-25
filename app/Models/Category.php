@@ -16,7 +16,6 @@ class Category extends Model
         return $this->hasMany(Template::class, 'category_id', 'id');
     }
 
-
     public function attributes()
     {
         return $this->belongsToMany(Attribute::class, 'templates', 'category_id', 'attribute_id')

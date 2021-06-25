@@ -37,7 +37,7 @@
 										id: c.id
 									}
 								}"
-								v-text="c.name"
+								v-text="c.id"
 								:title="'Ver el detalle de la categoría:' + c.name"
 							>
 							</router-link>

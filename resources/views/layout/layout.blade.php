@@ -14,9 +14,10 @@
         <div id="app" class="container">
             <h1>App</h1>
             <router-link to="/categories">Categorias</router-link>
-            <router-link to="/attributes">Atributos</router-link>
-            <router-link to="/groups">Grupos</router-link>
             <router-link to="/templates">Plantillas</router-link>
+
+            <router-link to="/attributes">Atributos</router-link>
+            <router-link to="/groups">Grupos</router-link>            
             <router-link to="/products">Productos</router-link>
             <router-view></router-view>
         </div>
