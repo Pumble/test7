@@ -8,6 +8,7 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
+import axios from 'axios';
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
@@ -43,5 +44,10 @@ const app = new Vue({
             types: ['Number', 'Float', 'String', 'Boolean', 'Object', 'Array', 'Date']
         };
     },
-    router
+    router,
+    computed: {
+        routePath() {
+            return this.$route.path;
+        }
+    }
 });

@@ -1,5 +1,8 @@
 <template>
-	<div id="templates-master">
+	<div
+		id="templates-master"
+		class="row"
+	>
 		<h2>Plantillas</h2>
 
 		<router-view name="templatesRouterView"></router-view>

@@ -19,6 +19,7 @@ class CreateTemplatesTable extends Migration
             $table->unsignedBigInteger('attribute_id');
             $table->string('type');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('attribute_id')->references('id')->on('attributes');

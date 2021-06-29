@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Attribute;
+use App\Models\Menu;
 
 /*
     |--------------------------------------------------------------------------
@@ -24,7 +25,19 @@ use App\Models\Attribute;
 */
 
 Route::get('/', function () {
-    return view('layout.layout');
+    $Menu = Menu::with([
+        'items:id,menu_id,menu_item_id,name,route',
+        'items.allChildrenItems'
+    ])
+        ->select([
+            'id',
+            'name'
+        ])
+        ->where('name', 'Interno')
+        ->get()
+        ->first();
+    // dd($Menu);
+    return view('layout.layout', compact('Menu'));
 
     /*
     // OBTENER LOS ATRIBUTOS DE UNA CATEGORIA

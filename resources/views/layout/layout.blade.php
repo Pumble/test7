@@ -11,15 +11,60 @@
             crossorigin="anonymous">
     </head>
     <body>
-        <div id="app" class="container">
-            <h1>App</h1>
-            <router-link to="/categories">Categorias</router-link>
-            <router-link to="/templates">Plantillas</router-link>
-
-            <router-link to="/attributes">Atributos</router-link>
-            <router-link to="/groups">Grupos</router-link>            
-            <router-link to="/products">Productos</router-link>
-            <router-view></router-view>
+        <div id="app">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <router-link class="navbar-brand" to="/">Test7</router-link>
+                    <button 
+                        class="navbar-toggler" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#internalNavbar" 
+                        aria-controls="internalNavbar" 
+                        aria-expanded="false" 
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="internalNavbar">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            @foreach ($Menu->items as $item)
+                                @if(count($item->allChildrenItems) > 0)
+                                    <li class="nav-item dropdown">
+                                        <router-link 
+                                            class="nav-link dropdown-toggle" 
+                                            to="{{ $item->route }}" 
+                                            id="internalNavbar-dropDown-{{ $loop->index }}" 
+                                            role="button" 
+                                            data-bs-toggle="dropdown" 
+                                            aria-expanded="false">
+                                            {{ $item->name }}
+                                        </router-link>
+                                        <ul class="dropdown-menu" aria-labelledby="internalNavbar-dropDown-{{ $loop->index }}">
+                                            @foreach ($item->all_children_items as $subItem)
+                                                <li>
+                                                    <router-link class="dropdown-item" to="{{ $subItem->route }}">{{ $subItem->name }}</router-link>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @else
+                                    <li class="nav-item">
+                                        <router-link 
+                                            class="nav-link" 
+                                            to="{{ $item->route }}"
+                                            :class="{ 'active': routePath == '{{ $item->route }}' }">
+                                            {{ $item->name }}
+                                        </router-link>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="container">
+                <router-view></router-view>
+            </div>
         </div>
 
         <script 

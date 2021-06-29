@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Template;
 
 class TemplateController extends Controller
 {
@@ -60,14 +61,21 @@ class TemplateController extends Controller
     {
         if ($request->ajax()) {
             $request->validate([
-                'id' => ['numeric', 'required'],
-                'category_id' => ['nullable', 'numeric', 'exists:categories,id'],
-                'name' => ['string', 'required']
+                'templates' => ['array', 'required']
             ]);
-            $Category = Category::findOrFail($request->id);
-            $Category->name = $request->name;
-            $Category->category_id = $request->category_id;
-            $Category->save();
+
+            foreach ($request->templates as $t) {
+                $Template = null;
+                if (isset($t['id'])) {
+                    $Template = Template::findOrFail($t['id']);
+                } else {
+                    $Template = new Template;
+                }
+                $Template->attribute_id = $t['attribute_id'];
+                $Template->category_id = $t['category_id'];
+                $Template->type = $t['type'];
+                $Template->save();
+            }
         }
     }
 

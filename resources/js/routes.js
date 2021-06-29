@@ -11,7 +11,7 @@ import TemplateAdd from './components/templates/add';
 import TemplateEdit from './components/templates/edit';
 
 export default [{
-    path: '/categories',
+    path: '/admin/categories',
     component: CategoryMaster,
     children: [{
         path: '',
@@ -33,10 +33,10 @@ export default [{
         }
     }]
 }, {
-    path: '/templates',
+    path: '/admin/templates',
     component: TemplateMaster,
     children: [{
-        path: '/',
+        path: '',
         name: 'templates',
         components: {
             templatesRouterView: TemplateIndex

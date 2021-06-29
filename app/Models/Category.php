@@ -36,4 +36,16 @@ class Category extends Model
     {
         return $this->hasMany(Category::class, 'category_id', 'id');
     }
+
+    // RECURSIVE ELOQUENT
+    // https://stackoverflow.com/questions/26652611/laravel-recursive-relationships
+    public function childrenCategories()
+    {
+        return $this->hasMany(Category::class, 'category_id', 'id');
+    }
+
+    public function allChildrenCategories()
+    {
+        return $this->childrenCategories()->with('allChildrenCategories');
+    }
 }

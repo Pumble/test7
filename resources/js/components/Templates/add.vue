@@ -2,6 +2,7 @@
 	<div
 		id="templates-add"
 		v-cloak
+		class="col-12"
 	>
 		<form @submit.prevent.stop="post">
 			<div class="mb-3">

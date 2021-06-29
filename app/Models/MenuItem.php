@@ -23,4 +23,16 @@ class MenuItem extends Model
     {
         return $this->hasMany(Menu::class, 'menu_id', 'id');
     }
+
+    // RECURSIVE ELOQUENT
+    // https://stackoverflow.com/questions/26652611/laravel-recursive-relationships
+    public function childrenItems()
+    {
+        return $this->hasMany(MenuItem::class, 'menu_item_id', 'id');
+    }
+
+    public function allChildrenItems()
+    {
+        return $this->childrenItems()->with('allChildrenItems');
+    }
 }

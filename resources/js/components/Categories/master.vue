@@ -1,5 +1,8 @@
 <template>
-	<div id="categories-master">
+	<div
+		class="row"
+		id="categories-master"
+	>
 		<h2>Categorías</h2>
 
 		<router-view name="categoriesRouterView"></router-view>
