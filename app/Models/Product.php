@@ -21,7 +21,10 @@ class Product extends Model
     public function templates()
     {
         return $this->belongsToMany(Template::class, 'template_values', 'product_id', 'template_id')
-            ->withPivot('value');
+            ->withPivot([
+                'value',
+                'id'
+            ]);
     }
 
     public function category()

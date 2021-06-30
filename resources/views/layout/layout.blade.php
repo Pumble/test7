@@ -12,7 +12,7 @@
     </head>
     <body>
         <div id="app">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
                 <div class="container-fluid">
                     <router-link class="navbar-brand" to="/">Test7</router-link>
                     <button 

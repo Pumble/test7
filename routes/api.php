@@ -8,6 +8,8 @@ use App\Http\Controllers\TemplateController;
 use App\Models\Template;
 use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\GroupController;
+use App\Models\Product;
+use App\Http\Controllers\ProductController;
 /*
     |--------------------------------------------------------------------------
     | API Routes
@@ -46,5 +48,13 @@ Route::prefix('admin')->group(function () {
 
     Route::prefix('groups')->group(function () {
         Route::get('/', [GroupController::class, 'search'])->name('api.admin.groups.get');
+    });
+
+    Route::prefix('products')->group(function () {
+        Route::get('/', [ProductController::class, 'search'])->name('api.admin.products.get');
+        Route::get('/{product:id}', [ProductController::class, 'get'])->name('api.admin.products.get');
+        Route::post('/', [ProductController::class, 'post'])->name('api.admin.products.post');
+        Route::put('/', [ProductController::class, 'put'])->name('api.admin.products.put');
+        Route::delete('/{product:id}', [ProductController::class, 'delete'])->name('api.admin.products.delete');
     });
 });

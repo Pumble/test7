@@ -71,10 +71,14 @@ class TemplateController extends Controller
                 } else {
                     $Template = new Template;
                 }
-                $Template->attribute_id = $t['attribute_id'];
-                $Template->category_id = $t['category_id'];
-                $Template->type = $t['type'];
-                $Template->save();
+                if (isset($t['deleted']) && $t['deleted'] == true) {
+                    $Template->delete();
+                } else {
+                    $Template->attribute_id = $t['attribute_id'];
+                    $Template->category_id = $t['category_id'];
+                    $Template->type = $t['type'];
+                    $Template->save();
+                }
             }
         }
     }

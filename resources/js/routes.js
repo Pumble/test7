@@ -5,10 +5,16 @@ import CategoryAdd from './components/Categories/add';
 import CategoryEdit from './components/Categories/edit';
 
 // IMPORTAR LAS CATEGORIAS AQUI
-import TemplateMaster from './components/templates/master';
-import TemplateIndex from './components/templates/index';
-import TemplateAdd from './components/templates/add';
-import TemplateEdit from './components/templates/edit';
+import TemplateMaster from './components/Templates/master';
+import TemplateIndex from './components/Templates/index';
+import TemplateAdd from './components/Templates/add';
+import TemplateEdit from './components/Templates/edit';
+
+// IMPORTAR LOS PRODUCTOS AQUI
+import ProductMaster from './components/Products/master';
+import ProductIndex from './components/Products/index';
+import ProductAdd from './components/Products/add';
+import ProductEdit from './components/Products/edit';
 
 export default [{
     path: '/admin/categories',
@@ -52,6 +58,28 @@ export default [{
         name: 'templateEdit',
         components: {
             templatesRouterView: TemplateEdit
+        }
+    }]
+}, {
+    path: '/admin/products',
+    component: ProductMaster,
+    children: [{
+        path: '',
+        name: 'products',
+        components: {
+            productsRouterView: ProductIndex
+        }
+    }, {
+        path: 'add',
+        name: 'productAdd',
+        components: {
+            productsRouterView: ProductAdd
+        }
+    }, {
+        path: 'edit/:id',
+        name: 'productEdit',
+        components: {
+            productsRouterView: ProductEdit
         }
     }]
 }];

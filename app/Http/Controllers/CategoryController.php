@@ -16,12 +16,15 @@ class CategoryController extends Controller
                 'category_id',
                 'name'
             ]);
+            $eagerLoads = [];
             if ($request->father == "true") {
-                $SQL->with([
-                    'father:id,category_id,name'
-                ]);
+                $eagerLoads[] = 'father:id,category_id,name';
             }
-            $Categories = $SQL->get();
+            if ($request->templates == "true") {
+                $eagerLoads[] = 'templates:id,category_id,attribute_id,type';
+                $eagerLoads[] = 'templates.attribute:id,name';
+            }
+            $Categories = $SQL->with($eagerLoads)->get();
             return response()->json($Categories);
         }
     }

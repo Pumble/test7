@@ -63,7 +63,6 @@
 							></h6>
 							<select
 								v-else
-								:id="Category.id + '__' + i"
 								class="form-select form-select-sm mb-3"
 								aria-label=".form-select-sm"
 								v-model="t.attribute_id"
@@ -93,6 +92,7 @@
 									required
 								></option>
 							</select>
+
 							<button
 								type="button"
 								class="btn btn-link card-link text-danger"
@@ -142,7 +142,7 @@ export default {
 		filteredTemplates() {
 			if (this.Category.id !== null) {
 				return this.Category.templates.filter(t => {
-					return t.deleted || t.deleted == true ? false : true;
+					return t.deleted != undefined ? false : true;
 				});
 			} else {
 				return [];
@@ -160,7 +160,8 @@ export default {
 							id: t.id,
 							category_id: t.category_id,
 							attribute_id: t.attribute_id,
-							type: t.type
+							type: t.type,
+							deleted: t.deleted
 						};
 					})
 				})
@@ -216,10 +217,7 @@ export default {
 		},
 		removeAttribute(id) {
 			var index = this.Category.templates.findIndex(x => x.id === id);
-			this.Category.templates[index].deleted = true;
-			// template.deleted = true;
-			// this.Category.templates[index].deleted = true;
-			// this.Category.templates.splice(index, 1);
+			Vue.set(this.Category.templates[index], "deleted", true);
 		}
 	},
 	created() {
